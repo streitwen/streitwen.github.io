@@ -331,6 +331,19 @@
       box-shadow: 0 0 12px var(--pink), 0 0 34px rgba(255, 43, 214, .4);
     }
 
+    .button.github {
+      border-color: var(--purple);
+      color: #c9a8ff;
+      background: rgba(157, 92, 255, .06);
+    }
+
+    .button.github:hover,
+    .button.github:focus-visible {
+      color: #fff;
+      background: var(--purple);
+      box-shadow: 0 0 12px var(--purple), 0 0 34px rgba(157, 92, 255, .4);
+    }
+
     .meta {
       display: flex;
       flex-wrap: wrap;
@@ -909,6 +922,23 @@
       text-shadow: 0 0 12px var(--cyan);
     }
 
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-self: end;
+      gap: 14px 20px;
+    }
+
+    .footer-link.github-link {
+      color: #c9a8ff;
+    }
+
+    .footer-link.github-link:hover,
+    .footer-link.github-link:focus-visible {
+      color: #fff;
+      text-shadow: 0 0 12px var(--purple);
+    }
+
     @keyframes grid-drift {
       from { transform: translateY(0); }
       to { transform: translateY(54px); }
@@ -1054,6 +1084,10 @@
       .footer-link {
         justify-self: start;
       }
+
+      .footer-links {
+        justify-self: start;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1085,6 +1119,7 @@
         <a href="#stack">STACK</a>
         <a href="#focus">FOCUS</a>
         <a href="#gitee">GITEE ↗</a>
+        <a href="https://github.com/streitwen" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
       </nav>
     </header>
 
@@ -1108,6 +1143,7 @@
           <div class="actions">
             <a class="button" href="#about">认识我 ↓</a>
             <a class="button pink" href="https://gitee.com/streit" target="_blank" rel="noopener noreferrer">访问 Gitee ↗</a>
+            <a class="button github" href="https://github.com/streitwen" target="_blank" rel="noopener noreferrer">访问 GitHub ↗</a>
           </div>
 
           <div class="meta" aria-label="个人状态">
@@ -1133,6 +1169,9 @@
 
               <p class="console-line"><span class="prompt">streit@lab:~$</span> <span class="command">connect --gitee</span></p>
               <p class="console-output">gitee.com/streit</p>
+
+              <p class="console-line"><span class="prompt">streit@lab:~$</span> <span class="command">connect --github</span></p>
+              <p class="console-output">github.com/streitwen</p>
 
               <div class="signal-list" aria-label="个人能力信号">
                 <div class="signal-item">
@@ -1317,7 +1356,10 @@
     <footer class="site-footer" id="gitee">
       <p class="footer-main"><strong>STREIT</strong> // KEEP BUILDING</p>
       <p class="footer-quote">慢慢写，认真学，持续迭代。</p>
-      <a class="footer-link" href="https://gitee.com/streit" target="_blank" rel="noopener noreferrer">gitee.com/streit ↗</a>
+      <div class="footer-links">
+        <a class="footer-link" href="https://gitee.com/streit" target="_blank" rel="noopener noreferrer">gitee.com/streit ↗</a>
+        <a class="footer-link github-link" href="https://github.com/streitwen" target="_blank" rel="noopener noreferrer">github.com/streitwen ↗</a>
+      </div>
     </footer>
   </div>
 </body>
