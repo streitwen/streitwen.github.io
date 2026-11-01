@@ -164,12 +164,29 @@
     }
 
     .hero {
+      position: relative;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr);
       align-items: center;
       gap: clamp(40px, 8vw, 108px);
       min-height: calc(100vh - 84px);
       padding: 84px 0 110px;
+    }
+
+    .hero::after {
+      position: absolute;
+      top: 86px;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      content: "";
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow:
+        0 0 10px var(--lime),
+        0 0 24px rgba(184, 255, 92, .62);
+      animation: blink 1.3s steps(2, start) infinite;
+      pointer-events: none;
     }
 
     .code-kicker {
@@ -233,23 +250,16 @@
     .hero-title {
       position: relative;
       width: fit-content;
-      color: transparent;
+      color: var(--text);
       font-size: clamp(3.7rem, 10vw, 8.7rem);
       font-weight: 900;
       line-height: .88;
       letter-spacing: .02em;
-      background: linear-gradient(110deg, #ff55dd 0%, #ff9dea 35%, #88faff 70%, #00f5ff 100%);
-      background-size: 200% 100%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       text-shadow:
         3px 0 rgba(255, 43, 214, .72),
         -3px 0 rgba(0, 245, 255, .72),
         0 0 30px rgba(0, 245, 255, .2);
       animation:
-        neon-breathe 4.6s ease-in-out infinite,
-        gradient-flow 8s ease-in-out infinite,
         flicker 6s infinite;
     }
 
@@ -1018,33 +1028,6 @@
       46%, 100% { opacity: 0; }
     }
 
-    @keyframes neon-breathe {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 7px rgba(0, 245, 255, .48))
-          drop-shadow(0 0 15px rgba(255, 43, 214, .28));
-        text-shadow:
-          3px 0 rgba(255, 43, 214, .62),
-          -3px 0 rgba(0, 245, 255, .62),
-          0 0 18px rgba(0, 245, 255, .32);
-      }
-
-      50% {
-        filter:
-          drop-shadow(0 0 16px rgba(0, 245, 255, .86))
-          drop-shadow(0 0 38px rgba(255, 43, 214, .58));
-        text-shadow:
-          3px 0 rgba(255, 43, 214, .82),
-          -3px 0 rgba(0, 245, 255, .82),
-          0 0 44px rgba(0, 245, 255, .68);
-      }
-    }
-
-    @keyframes gradient-flow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
     @keyframes halo-cyan {
       0%, 100% {
         box-shadow:
@@ -1149,6 +1132,11 @@
       .hero {
         min-height: auto;
         padding: 70px 0 84px;
+      }
+
+      .hero::after {
+        top: 72px;
+        right: 2px;
       }
 
       .hero-title {
