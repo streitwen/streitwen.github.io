@@ -164,29 +164,12 @@
     }
 
     .hero {
-      position: relative;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr);
       align-items: center;
       gap: clamp(40px, 8vw, 108px);
       min-height: calc(100vh - 84px);
       padding: 84px 0 110px;
-    }
-
-    .hero::after {
-      position: absolute;
-      top: 86px;
-      right: 0;
-      width: 12px;
-      height: 12px;
-      content: "";
-      border-radius: 50%;
-      background: var(--lime);
-      box-shadow:
-        0 0 10px var(--lime),
-        0 0 24px rgba(184, 255, 92, .62);
-      animation: blink 1.3s steps(2, start) infinite;
-      pointer-events: none;
     }
 
     .code-kicker {
@@ -261,6 +244,22 @@
         0 0 30px rgba(0, 245, 255, .2);
       animation:
         flicker 6s infinite;
+    }
+
+    .hero-title-dot {
+      position: absolute;
+      z-index: 3;
+      top: -18px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow:
+        0 0 10px var(--lime),
+        0 0 24px rgba(184, 255, 92, .62);
+      animation: blink 1.3s steps(2, start) infinite;
+      pointer-events: none;
     }
 
     .hero-title::before,
@@ -1134,13 +1133,15 @@
         padding: 70px 0 84px;
       }
 
-      .hero::after {
-        top: 72px;
-        right: 2px;
-      }
-
       .hero-title {
         font-size: clamp(3.25rem, 17vw, 6.2rem);
+      }
+
+      .hero-title-dot {
+        top: -12px;
+        right: 4px;
+        width: 10px;
+        height: 10px;
       }
 
       .code-kicker {
@@ -1247,7 +1248,7 @@
             <span class="typewriter-cursor" aria-hidden="true"></span>
           </p>
 
-          <h1 class="hero-title" id="hero-title" data-text="HELLO, WORLD.">HELLO, WORLD.</h1>
+          <h1 class="hero-title" id="hero-title" data-text="HELLO, WORLD.">HELLO, WORLD.<span class="hero-title-dot" aria-hidden="true"></span></h1>
           <p class="hero-name">我是 <strong>Streit</strong>。</p>
 
           <p class="hero-copy">
