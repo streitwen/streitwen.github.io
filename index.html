@@ -200,19 +200,57 @@
       animation: blink 1.3s steps(2, start) infinite;
     }
 
+    .code-kicker.typewriter {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .code-kicker.typewriter::after {
+      display: none;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: type-code 4.3s steps(43, end) forwards;
+    }
+
+    .typewriter-cursor {
+      flex: 0 0 2px;
+      width: 2px;
+      height: 1.05em;
+      margin-left: 3px;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan), 0 0 14px var(--pink);
+      opacity: 0;
+      animation:
+        cursor-reveal 4.3s steps(1, end) forwards,
+        cursor-blink .75s 4.3s step-end infinite;
+    }
+
     .hero-title {
       position: relative;
       width: fit-content;
-      color: var(--text);
+      color: transparent;
       font-size: clamp(3.7rem, 10vw, 8.7rem);
       font-weight: 900;
       line-height: .88;
       letter-spacing: .02em;
+      background: linear-gradient(110deg, #ff55dd 0%, #ff9dea 35%, #88faff 70%, #00f5ff 100%);
+      background-size: 200% 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-shadow:
         3px 0 rgba(255, 43, 214, .72),
         -3px 0 rgba(0, 245, 255, .72),
         0 0 30px rgba(0, 245, 255, .2);
-      animation: flicker 6s infinite;
+      animation:
+        neon-breathe 4.6s ease-in-out infinite,
+        gradient-flow 8s ease-in-out infinite,
+        flicker 6s infinite;
     }
 
     .hero-title::before,
@@ -318,6 +356,12 @@
       left: 130%;
     }
 
+    .button.glow-hover:hover,
+    .button.glow-hover:focus-visible {
+      transform: translateY(-4px);
+      animation: halo-cyan 1.8s ease-in-out infinite;
+    }
+
     .button.pink {
       border-color: var(--pink);
       color: #ff9dea;
@@ -329,6 +373,11 @@
       color: #fff;
       background: var(--pink);
       box-shadow: 0 0 12px var(--pink), 0 0 34px rgba(255, 43, 214, .4);
+    }
+
+    .button.pink.glow-hover:hover,
+    .button.pink.glow-hover:focus-visible {
+      animation-name: halo-pink;
     }
 
     .button.github {
@@ -954,6 +1003,80 @@
       50%, 88% { opacity: .25; }
     }
 
+    @keyframes type-code {
+      from { width: 0; }
+      to { width: 43ch; }
+    }
+
+    @keyframes cursor-reveal {
+      0%, 99% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes cursor-blink {
+      0%, 45% { opacity: 1; }
+      46%, 100% { opacity: 0; }
+    }
+
+    @keyframes neon-breathe {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 7px rgba(0, 245, 255, .48))
+          drop-shadow(0 0 15px rgba(255, 43, 214, .28));
+        text-shadow:
+          3px 0 rgba(255, 43, 214, .62),
+          -3px 0 rgba(0, 245, 255, .62),
+          0 0 18px rgba(0, 245, 255, .32);
+      }
+
+      50% {
+        filter:
+          drop-shadow(0 0 16px rgba(0, 245, 255, .86))
+          drop-shadow(0 0 38px rgba(255, 43, 214, .58));
+        text-shadow:
+          3px 0 rgba(255, 43, 214, .82),
+          -3px 0 rgba(0, 245, 255, .82),
+          0 0 44px rgba(0, 245, 255, .68);
+      }
+    }
+
+    @keyframes gradient-flow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes halo-cyan {
+      0%, 100% {
+        box-shadow:
+          0 0 12px var(--cyan),
+          0 0 30px rgba(0, 245, 255, .42),
+          0 0 0 0 rgba(0, 245, 255, 0);
+      }
+
+      50% {
+        box-shadow:
+          0 0 18px var(--cyan),
+          0 0 38px rgba(0, 245, 255, .58),
+          0 0 0 8px rgba(0, 245, 255, .11);
+      }
+    }
+
+    @keyframes halo-pink {
+      0%, 100% {
+        box-shadow:
+          0 0 12px var(--pink),
+          0 0 30px rgba(255, 43, 214, .42),
+          0 0 0 0 rgba(255, 43, 214, 0);
+      }
+
+      50% {
+        box-shadow:
+          0 0 18px var(--pink),
+          0 0 38px rgba(255, 43, 214, .58),
+          0 0 0 8px rgba(255, 43, 214, .11);
+      }
+    }
+
     @keyframes flicker {
       0%, 18%, 22%, 63%, 100% { opacity: 1; }
       20%, 21%, 64% { opacity: .82; }
@@ -1030,6 +1153,11 @@
 
       .hero-title {
         font-size: clamp(3.25rem, 17vw, 6.2rem);
+      }
+
+      .code-kicker {
+        font-size: .62rem;
+        letter-spacing: 0;
       }
 
       .hero-name {
@@ -1126,7 +1254,10 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-content">
-          <p class="code-kicker">while (alive) { code(); learn(); sleep(); }</p>
+          <p class="code-kicker typewriter" aria-label="while (alive) { code(); learn(); sleep(); }">
+            <span class="typewriter-text">while (alive) { code(); learn(); sleep(); }</span>
+            <span class="typewriter-cursor" aria-hidden="true"></span>
+          </p>
 
           <h1 class="hero-title" id="hero-title" data-text="HELLO, WORLD.">HELLO, WORLD.</h1>
           <p class="hero-name">我是 <strong>Streit</strong>。</p>
@@ -1141,8 +1272,8 @@
           </blockquote>
 
           <div class="actions">
-            <a class="button" href="#about">认识我 ↓</a>
-            <a class="button pink" href="https://gitee.com/streit" target="_blank" rel="noopener noreferrer">访问 Gitee ↗</a>
+            <a class="button glow-hover" href="#about">认识我 ↓</a>
+            <a class="button pink glow-hover" href="https://gitee.com/streit" target="_blank" rel="noopener noreferrer">访问 Gitee ↗</a>
             <a class="button github" href="https://github.com/streitwen" target="_blank" rel="noopener noreferrer">访问 GitHub ↗</a>
           </div>
 
